@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kasir Indomaret x One Piece</title>
+    <title>Kasir Indomaret x One Piece HDR Edition</title>
     <style>
         :root {
             --indomaret-blue: #00529C;
             --indomaret-red: #ED1C24;
             --indomaret-yellow: #FFC20E;
-            --bg-dark: #0f172a;
-            --card-bg: #1e293b;
+            --bg-dark: #0a0f1d;
+            --card-bg: #131c2e;
         }
 
         * {
@@ -30,24 +30,25 @@
 
         /* HEADER */
         header {
-            background: linear-gradient(135deg, var(--indomaret-blue), #002e59);
+            background: linear-gradient(135deg, var(--indomaret-blue), #001f3f);
             padding: 15px;
             text-align: center;
             border-bottom: 4px solid var(--indomaret-yellow);
-            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
 
         header h1 {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: #fff;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px var(--indomaret-yellow);
+            letter-spacing: 1px;
         }
 
-        /* NAVIGASI MENU (ANDROID FRIENDLY) */
+        /* NAVIGASI MENU (MOBILE) */
         nav {
             display: flex;
             overflow-x: auto;
-            background: #090d16;
+            background: #060911;
             padding: 10px;
             gap: 10px;
             scrollbar-width: none;
@@ -60,9 +61,9 @@
         .nav-btn {
             flex: 0 0 auto;
             background: #1e293b;
-            color: #ccc;
+            color: #94a3b8;
             border: 1px solid #334155;
-            padding: 8px 14px;
+            padding: 10px 16px;
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: bold;
@@ -74,10 +75,10 @@
             background: var(--indomaret-yellow);
             color: #000;
             border-color: var(--indomaret-yellow);
-            box-shadow: 0 0 10px rgba(255, 194, 14, 0.5);
+            box-shadow: 0 0 12px rgba(255, 194, 14, 0.8);
         }
 
-        /* CONTAINER PANEL */
+        /* PANEL */
         main {
             flex: 1;
             padding: 15px;
@@ -86,118 +87,129 @@
         .panel {
             display: none;
             background: var(--card-bg);
-            border-radius: 12px;
+            border-radius: 14px;
             padding: 15px;
-            border: 1px solid #334155;
+            border: 1px solid #1e293b;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
         }
 
         .panel.active {
             display: block;
         }
 
-        /* KARAKTER & ANIMASI KEKUATAN */
+        /* KARAKTER & FOTO EFEK HDR */
         .char-card {
             display: flex;
             align-items: center;
             gap: 15px;
-            background: rgba(15, 23, 42, 0.6);
-            padding: 10px;
-            border-radius: 10px;
+            background: rgba(15, 23, 42, 0.7);
+            padding: 12px;
+            border-radius: 12px;
             margin-bottom: 15px;
             position: relative;
             overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .char-svg {
-            width: 70px;
-            height: 70px;
+        .char-avatar {
+            width: 75px;
+            height: 75px;
             border-radius: 50%;
-            background: #334155;
             z-index: 2;
             flex-shrink: 0;
+            border: 2px solid var(--indomaret-yellow);
+            box-shadow: 0 0 15px rgba(255, 194, 14, 0.6);
+            filter: drop-shadow(0 0 8px rgba(255,255,255,0.4)) contrast(120%) brightness(110%);
         }
 
-        .char-desc h2 { font-size: 1.1rem; color: var(--indomaret-yellow); }
-        .char-desc p { font-size: 0.8rem; color: #94a3b8; }
+        .char-desc {
+            z-index: 2;
+        }
 
-        /* 1. ZORO: CONTINUOUS SLASH */
-        .slash-effect {
+        .char-desc h2 { font-size: 1.1rem; color: var(--indomaret-yellow); text-shadow: 0 0 8px rgba(255,194,14,0.5); }
+        .char-desc p { font-size: 0.8rem; color: #cbd5e1; }
+
+        /* 1. EFEK HDR ZORO (SANTORYU SLASH) */
+        .hdr-zoro-effect {
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
+            top: -50%; left: -50%; width: 200%; height: 200%;
             pointer-events: none;
-            background: linear-gradient(45deg, transparent 45%, #22c55e 50%, transparent 55%);
+            background: linear-gradient(135deg, transparent 40%, rgba(34, 197, 94, 0.8) 50%, transparent 60%);
+            filter: drop-shadow(0 0 15px #22c55e);
             animation: zoroSlash 1.2s infinite linear;
-            opacity: 0.6;
         }
         @keyframes zoroSlash {
-            0% { transform: translate(-30%, -30%) rotate(0deg); }
-            100% { transform: translate(30%, 30%) rotate(180deg); }
+            0% { transform: translate(-30%, -30%) rotate(0deg); opacity: 0.2; }
+            50% { opacity: 1; }
+            100% { transform: translate(30%, 30%) rotate(180deg); opacity: 0.2; }
         }
 
-        /* 2. FRANKY: RADICAL BEAM */
-        .beam-effect {
+        /* 2. EFEK HDR FRANKY (RADICAL BEAM) */
+        .hdr-franky-effect {
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
+            top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none;
-            background: radial-gradient(circle, rgba(6, 182, 212, 0.3) 0%, transparent 70%);
-            animation: frankyBeam 0.8s infinite alternate;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.6) 0%, transparent 70%);
+            filter: drop-shadow(0 0 20px #06b6d4) contrast(150%);
+            animation: frankyBeam 0.8s infinite alternate ease-in-out;
         }
         @keyframes frankyBeam {
-            0% { opacity: 0.2; transform: scale(0.8); }
-            100% { opacity: 0.8; transform: scale(1.2); }
+            0% { opacity: 0.3; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1.1); }
         }
 
-        /* 3. SANJI: DIABLE JAMBE FIRE */
-        .fire-effect {
+        /* 3. EFEK HDR SANJI (DIABLE JAMBE FIRE) */
+        .hdr-sanji-effect {
             position: absolute;
             bottom: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none;
-            background: radial-gradient(circle at bottom, rgba(239, 68, 68, 0.4), transparent 60%);
+            background: radial-gradient(circle at bottom, rgba(239, 68, 68, 0.7), transparent 65%);
+            filter: drop-shadow(0 0 20px #ef4444) saturate(200%);
             animation: sanjiFire 1s infinite alternate ease-in-out;
         }
         @keyframes sanjiFire {
-            0% { filter: hue-rotate(0deg); opacity: 0.5; }
-            100% { filter: hue-rotate(30deg); opacity: 0.9; }
+            0% { opacity: 0.4; filter: drop-shadow(0 0 10px #f97316) hue-rotate(0deg); }
+            100% { opacity: 0.95; filter: drop-shadow(0 0 25px #ef4444) hue-rotate(30deg); }
         }
 
-        /* 4. NAMI: THUNDERBOLT TEMPO */
-        .lightning-effect {
+        /* 4. EFEK HDR NAMI (THUNDERBOLT TEMPO) */
+        .hdr-nami-effect {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none;
-            background: rgba(59, 130, 246, 0.1);
-            animation: namiThunder 0.6s infinite alternate;
+            background: rgba(59, 130, 246, 0.15);
+            filter: drop-shadow(0 0 15px #3b82f6);
+            animation: namiThunder 0.5s infinite alternate;
         }
         @keyframes namiThunder {
             0% { background: rgba(59, 130, 246, 0); }
-            50% { background: rgba(250, 204, 21, 0.25); }
-            100% { background: rgba(59, 130, 246, 0.1); }
+            50% { background: rgba(250, 204, 21, 0.35); filter: drop-shadow(0 0 30px #facc15); }
+            100% { background: rgba(59, 130, 246, 0.15); }
         }
 
-        /* 5. LUFFY: GEAR 5 HAKI SHOCKWAVE */
-        .haki-effect {
+        /* 5. EFEK HDR LUFFY (GEAR 5 HAOSHOKU HAKI) */
+        .hdr-luffy-effect {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none;
-            box-shadow: inset 0 0 20px #a855f7;
-            animation: luffyHaki 1s infinite alternate ease-in-out;
+            box-shadow: inset 0 0 25px #a855f7;
+            filter: drop-shadow(0 0 15px #a855f7) contrast(130%);
+            animation: luffyHaki 0.9s infinite alternate ease-in-out;
         }
         @keyframes luffyHaki {
             0% { box-shadow: inset 0 0 10px #a855f7; }
-            100% { box-shadow: inset 0 0 35px #ef4444; }
+            100% { box-shadow: inset 0 0 40px #ef4444; }
         }
 
-        /* FITUR UI KASIR */
+        /* UI ELEMENTS */
         .action-box {
-            background: #0f172a;
+            background: #0b1322;
             padding: 12px;
             border-radius: 8px;
             margin-top: 10px;
+            border: 1px solid #1e293b;
         }
 
         .btn-action {
@@ -211,13 +223,14 @@
             font-size: 0.95rem;
             margin-top: 10px;
             cursor: pointer;
+            box-shadow: 0 4px 10px rgba(237, 28, 36, 0.4);
         }
 
         .item-row {
             display: flex;
             justify-content: space-between;
             padding: 8px 0;
-            border-bottom: 1px solid #334155;
+            border-bottom: 1px solid #1e293b;
             font-size: 0.85rem;
         }
     </style>
@@ -225,7 +238,7 @@
 <body>
 
     <header>
-        <h1>INDOMARET POS x ONE PIECE</h1>
+        <h1>INDOMARET POS x ONE PIECE (HDR)</h1>
     </header>
 
     <nav>
@@ -239,9 +252,9 @@
     <main>
         <!-- 1. POS TRANSAKSI (ZORO) -->
         <div id="pos" class="panel active">
-            <div class="slash-effect"></div>
+            <div class="hdr-zoro-effect"></div>
             <div class="char-card">
-                <svg class="char-svg" viewBox="0 0 100 100">
+                <svg class="char-avatar" viewBox="0 0 100 100">
                     <circle cx="50" cy="50" r="45" fill="#15803d"/>
                     <path d="M25 45 Q50 35 75 45 Q50 25 25 45 Z" fill="#4ade80"/>
                     <circle cx="38" cy="50" r="4" fill="#000"/>
@@ -249,96 +262,96 @@
                 </svg>
                 <div class="char-desc">
                     <h2>Roronoa Zoro</h2>
-                    <p>Santoryu Scan - Transaksi Cepat Kilat</p>
+                    <p>Santoryu Slash - Scan Transaksi</p>
                 </div>
             </div>
             <div class="action-box">
-                <div class="item-row"><span>Indomilk 190ml</span><span>Rp 5.500</span></div>
-                <div class="item-row"><span>Roti Ooka Cokelat</span><span>Rp 9.000</span></div>
-                <div class="item-row"><strong>Total Belanja:</strong><strong style="color:var(--indomaret-yellow)">Rp 14.500</strong></div>
+                <div class="item-row"><span>Air Mineral 600ml</span><span>Rp 3.500</span></div>
+                <div class="item-row"><span>Roti Manis Indomaret</span><span>Rp 8.000</span></div>
+                <div class="item-row"><strong>Total:</strong><strong style="color:var(--indomaret-yellow)">Rp 11.500</strong></div>
                 <button class="btn-action">Proses Pembayaran (Scan)</button>
             </div>
         </div>
 
         <!-- 2. INVENTARIS (FRANKY) -->
         <div id="inventory" class="panel">
-            <div class="beam-effect"></div>
+            <div class="hdr-franky-effect"></div>
             <div class="char-card">
-                <svg class="char-svg" viewBox="0 0 100 100">
+                <svg class="char-avatar" viewBox="0 0 100 100">
                     <circle cx="50" cy="50" r="45" fill="#0284c7"/>
                     <rect x="35" y="20" width="30" height="20" fill="#38bdf8"/>
                     <circle cx="50" cy="55" r="15" fill="#ef4444"/>
                 </svg>
                 <div class="char-desc">
                     <h2>Cyborg Franky</h2>
-                    <p>Radical Beam - Cek Stok & Restock</p>
+                    <p>Radical Beam - Cek Stok Barang</p>
                 </div>
             </div>
             <div class="action-box">
-                <div class="item-row"><span>Air Mineral 600ml</span><span>Stok: 120 Pcs</span></div>
-                <div class="item-row"><span>Minyak Goreng 2L</span><span>Stok: 8 Pcs (Low)</span></div>
-                <button class="btn-action" style="background:#0284c7;">Auto Restock Barang</button>
+                <div class="item-row"><span>Susu UHT 1L</span><span>Stok: 45 Pcs</span></div>
+                <div class="item-row"><span>Snack Potato</span><span>Stok: 5 Pcs (Min)</span></div>
+                <button class="btn-action" style="background:#0284c7;">Auto Restock (Beam)</button>
             </div>
         </div>
 
         <!-- 3. MEMBERSHIP (SANJI) -->
         <div id="loyalty" class="panel">
-            <div class="fire-effect"></div>
+            <div class="hdr-sanji-effect"></div>
             <div class="char-card">
-                <svg class="char-svg" viewBox="0 0 100 100">
+                <svg class="char-avatar" viewBox="0 0 100 100">
                     <circle cx="50" cy="50" r="45" fill="#b91c1c"/>
                     <path d="M30 30 Q60 20 70 50 Q40 80 30 30 Z" fill="#fef08a"/>
                 </svg>
                 <div class="char-desc">
                     <h2>Vinsmoke Sanji</h2>
-                    <p>Diable Jambe - Poin Member & Diskon</p>
+                    <p>Diable Jambe - Poin & Member</p>
                 </div>
             </div>
             <div class="action-box">
-                <div class="item-row"><span>Member ID:</span><span>#OP-88921</span></div>
-                <div class="item-row"><span>Poin Terkumpul:</span><span style="color:#ef4444; font-weight:bold;">1.250 Poin</span></div>
-                <button class="btn-action" style="background:#b91c1c;">Tukar Poin Diskon</button>
+                <div class="item-row"><span>ID Member:</span><span>#OP-99201</span></div>
+                <div class="item-row"><span>Total Poin:</span><span style="color:#ef4444; font-weight:bold;">2.450 Poin</span></div>
+                <button class="btn-action" style="background:#b91c1c;">Cairkan Diskon</button>
             </div>
         </div>
 
         <!-- 4. BACK-OFFICE (NAMI) -->
         <div id="backoffice" class="panel">
-            <div class="lightning-effect"></div>
+            <div class="hdr-nami-effect"></div>
             <div class="char-card">
-                <svg class="char-svg" viewBox="0 0 100 100">
+                <svg class="char-avatar" viewBox="0 0 100 100">
                     <circle cx="50" cy="50" r="45" fill="#ca8a04"/>
                     <circle cx="50" cy="40" r="20" fill="#f97316"/>
                 </svg>
                 <div class="char-desc">
                     <h2>Navigator Nami</h2>
-                    <p>Thunderbolt - Synchronize Harga Pusat</p>
+                    <p>Thunderbolt - Synchronize Harga</p>
                 </div>
             </div>
             <div class="action-box">
-                <div class="item-row"><span>Status Sinkronasi:</span><span>Terhubung Pusat</span></div>
-                <div class="item-row"><span>Omzet Toko:</span><span>Rp 4.250.000</span></div>
+                <div class="item-row"><span>Status Pusat:</span><span>Online</span></div>
+                <div class="item-row"><span>Perubahan Harga:</span><span>3 Item Baru</span></div>
                 <button class="btn-action" style="background:#ca8a04;">Update Master Harga</button>
             </div>
         </div>
 
         <!-- 5. KEUANGAN (LUFFY) -->
         <div id="security" class="panel">
-            <div class="haki-effect"></div>
+            <div class="hdr-luffy-effect"></div>
             <div class="char-card">
-                <svg class="char-svg" viewBox="0 0 100 100">
+                <svg class="char-avatar" viewBox="0 0 100 100">
                     <circle cx="50" cy="50" r="45" fill="#7e22ce"/>
                     <circle cx="50" cy="45" r="22" fill="#fff"/>
                     <path d="M20 50 Q50 20 80 50" stroke="#dc2626" stroke-width="6" fill="none"/>
                 </svg>
                 <div class="char-desc">
                     <h2>Luffy Gear 5</h2>
-                    <p>Haoshoku Haki - Keamanan & Laporan Kas</p>
+                    <p>Haoshoku Haki - Audit & Security</p>
                 </div>
             </div>
             <div class="action-box">
-                <div class="item-row"><span>Status Sistem:</span><span style="color:#4ade80;">Aman (Encrypted)</span></div>
-                <div class="item-row"><span>Laporan Tutup Hari:</span><span>Siap Cetak</span></div>
-                <button class="btn-action" style="background:#7e22ce;">Lockdown & Tutup Kasir</button>
+                <div class="item-row"><span>Enkripsi Data:</span><span style="color:#4ade80;">Aktif (Haki Protection)</span></div>
+                <div class="item-row"><span>Laporan Kas:</span><span>Settlement Ok</span></div>
+                <button class="btn-action" style="background:#7e22ce;">Lockdown System</button>
             </div>
         </div>
     </main>
